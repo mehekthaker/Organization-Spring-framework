@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+
+	<!-- <bean id="provider" class="com.cg.provider.GMMessageProvider"> </bean> 
+		<bean id="renderer" class="com.cg.renderer.PDFMessageRenderer"> <property 
+		name="messageProvider" ref="provider" /> <constructor-arg ref="provider" 
+		/> </bean> -->
+		
+	<util:properties id="proxyServer" location="classpath:proxyServer.properties"/>	
+
+	<bean id="addr" class="com.cg.address.Address" scope="singleton">
+		<constructor-arg value="IT1/IT2" />
+		<constructor-arg value="Airoli" />
+		<constructor-arg value="Mumbai" />
+		<constructor-arg value="Maharashtra" />
+		<constructor-arg value="400678" />
+		<constructor-arg value="India" />
+	</bean>
+
+
+	<bean id="org" class="com.cg.org.Organization" scope="singleton" lazy-init="true"
+		p:name="Capgemini" p:address-ref="addr" p:marketValue="230.88"
+		p:employeeCount="19234567" p:established="1967/7/11" p:proxyServerList-ref="proxyServer">
+	
+		<property name="globalPresence">
+			<set>
+				<value>France</value>
+				<value>India</value>
+				<value>U.S.</value>
+			</set>
+		</property>
+
+		<property name="boardMembers">
+			<list>
+				<value>CEO</value>
+				<value>Directors</value>
+				<value>Project Managers</value>
+				<value>Executives</value>
+			</list>
+		</property>
+
+		<property name="projectManagers">
+			<map>
+				<entry key="Web-development" value="Shaun Dsa"/>
+					<entry key="AI" value="David Robinson"/>
+						<entry key="ML" value="Anna Jose"/>
+
+				
+			</map>
+		</property>
+
+		 
+	
+</bean>
+	
+
+
+</beans>
